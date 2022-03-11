@@ -10,3 +10,17 @@ An example project for demonstrating DRF's schema bug when using SafeString as h
 - Swagger UI fails to render the generated schema.
 
 More details on [the discussion](https://github.com/encode/django-rest-framework/discussions/8402).
+
+## Using proposed fix
+
+To use the proposed fix, first uninstall the previous installed official DRF package:
+
+```console
+$ pip uninstall -y djangorestframework
+```
+
+Then install the package based on the `requirements.txt`:
+
+```console
+$ pip install -r requirements.txt
+```
