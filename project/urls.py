@@ -15,9 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.views.generic import TemplateView
 from rest_framework.generics import ListCreateAPIView
-from rest_framework.schemas import get_schema_view
 
 from project.app.models import ExampleModel
 from project.app.serializers import ExampleSerializer
@@ -28,15 +26,4 @@ urlpatterns = [
         queryset=ExampleModel.objects.all(),
         serializer_class=ExampleSerializer
     )),
-    # https://www.django-rest-framework.org/api-guide/schemas/#generating-a-dynamic-schema-with-schemaview
-    path('openapi', get_schema_view(
-        title="Your Project",
-        description="API for all things …",
-        version="1.0.0"
-    ), name='openapi-schema'),
-    # https://www.django-rest-framework.org/topics/documenting-your-api/#a-minimal-example-with-swagger-ui
-    path('swagger-ui/', TemplateView.as_view(
-        template_name='swagger-ui.html',
-        extra_context={'schema_url':'openapi-schema'}
-    ), name='swagger-ui'),
 ]
