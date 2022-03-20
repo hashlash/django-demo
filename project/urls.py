@@ -16,14 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from rest_framework.generics import ListCreateAPIView
+from rest_framework.routers import DefaultRouter
 
-from project.app.models import ExampleModel
-from project.app.serializers import ExampleSerializer
+from project.app.views import ExampleViewSet
+
+
+router = DefaultRouter()
+router.register(r'examples', ExampleViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('example-model/', ListCreateAPIView.as_view(
-        queryset=ExampleModel.objects.all(),
-        serializer_class=ExampleSerializer
-    )),
 ]
+urlpatterns += router.urls
