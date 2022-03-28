@@ -15,16 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from rest_framework.generics import ListCreateAPIView
-from rest_framework.routers import DefaultRouter
 
-from project.app.views import ExampleViewSet
-
-
-router = DefaultRouter()
-router.register(r'examples', ExampleViewSet)
+from project.app.views import ContractListAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('contracts/', ContractListAPIView.as_view())
 ]
-urlpatterns += router.urls
